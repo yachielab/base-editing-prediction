@@ -66,16 +66,16 @@ def simulation(ref,query,mutation_rate_dict,mutation_pattern_dict,start=-30,end=
     pos    = 0 
     value  = 1.0
     values = [] 
-    rps    = []
+    edited_positions = []
     
-    #Search editing position and save into 'rps'.
+    #Search editing position and save into 'edited_positions'.
     for pos, (r,q) in enumerate(zip(ref,query)):
         if r != q:
-            rps.append(pos)  
-    all_combinations = itertools.product(rps,list(range(end-start+1)))
+            edited_positions.append(pos)  
+    all_combinations = itertools.product(edited_positions,list(range(end-start+1)))
     
     #Product of base transition probablity at each position.
-    for pos in rps:
+    for pos in edited_positions:
         p = query[pos] 
         v = mutation_rate_dict[(pos+start,ref[pos])][p]
         if v == None:
@@ -87,7 +87,7 @@ def simulation(ref,query,mutation_rate_dict,mutation_pattern_dict,start=-30,end=
     for combi in all_combinations:
         r_combi = (combi[0]+start,combi[1]+start)
         ref_set = (ref[combi[0]],ref[combi[1]]) 
-        if combi[0] in rps: #if conditional base 
+        if combi[0] in edited_positions: #if conditional base 
             p = query[combi[0]] 
             q = query[combi[1]]
             v = mutation_pattern_dict[(r_combi,ref_set)][p][q] 
@@ -96,7 +96,7 @@ def simulation(ref,query,mutation_rate_dict,mutation_pattern_dict,start=-30,end=
             value = value * v
        
     #Calculation of geometric mean. 
-    value = value**(1.0/len(rps)) 
+    value = value**(1.0/len(edited_positions)) 
     if np.isnan(value) or value > min(values):
         value = np.prod(values) 
     return value
