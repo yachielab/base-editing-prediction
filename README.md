@@ -1,7 +1,6 @@
-#Base editing prediction model used in Sakata, Ishiguro, Mori et al. (2020)
+# Base editing prediction model used in Sakata, Ishiguro, Mori et al. (2020)
 
-##Installation and User Manual
-
+## Installation and User Manual
 This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=20> be the nucleotide base transition status at *i* bp position relative to the PAM at the target site and <img src=images/P_si.png width=40>be the probability of  <img src=images/S_i.png width=20>. A base editor model is prepared as a profile of <img src=images/P_si.png width=40> and <img src=images/P_sjsi.png width=55> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
 
 
@@ -25,13 +24,13 @@ This script also enables to predict frequencies of the all possible base editing
 
 
 
-##Software Dependency
+## Software Dependency
 
 Python 3.7.0 or later
 
 
 
-##Installation
+## Installation
 
 1. Donwload the software by
 
@@ -71,9 +70,9 @@ Options:
 
 
 
-##Usage
+## Usage
 
-###Sample codes
+### Sample codes
 
 #### Example 1: Predicting a frequency of a given editing outcome pattern
 
@@ -91,7 +90,7 @@ Editing frequency : 0.01109914561215845
 ````
 
 
-####Example 2: Predicting frequencies of all the possible base editing patterns for a given target sequence
+#### Example 2: Predicting frequencies of all the possible base editing patterns for a given target sequence
 
 ````
 python base-editing-prediction.py -i ACACACACACACTCTGATCATACGA -s '-25' -m sample_models/TargetACEmax.csv -f [file_path]/[output]
