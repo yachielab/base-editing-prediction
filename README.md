@@ -152,8 +152,8 @@ A base editor model needs to be prepared as a CSV file in the following format
 
 ````
 #Model Name : Target-ACE
-#TP         : Target base transition probability
-#CTP        : Conditional base transition probability
+#TP         : Target transition probability
+#CTP        : Conditional transition probability
 Data type,Conditional transition,Target transition,Probability
 TP,,-30:A>A,0
 TP,,-30:A>T,1.74142232733626e-05
