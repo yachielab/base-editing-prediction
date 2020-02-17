@@ -25,25 +25,26 @@ colors2 = [cmap2(i) for i in range(0,12)]
 color_dict  = {"G":"#f2f059", "C":"#74b2d7", "A":"#79E5B7", "T":"#ff776c", "N":"#FFFFFF", "-":"#FFFFFF"}
 
 def main(ref,editing_spec,s,e,name):
+    spec = [] 
     fig  = plt.figure(figsize=(4,2))
     
     #Visualization for the editing spectrum 
     ax   = fig.add_axes([0.1,0.2,0.8,0.8])
-    bars = ax.bar(list(range(len(ref))), editing_spec, width=0.9, align="center")
-    
-    for bar,c in zip(bars,ref): 
-        if c == "A":
-            bar.set_facecolor(color_dict["G"])
-        elif c == "C": 
-            bar.set_facecolor(color_dict["T"])
-        else:
-            pass 
+    for i in range(len(ref)):
+        bottom = 0
+        for c in ["A","T","G","C"]:
+            value = editing_spec[i][c]
+            if value != "N.A.":
+                ax.bar([i], [value], width=0.9, align="center", bottom=bottom, facecolor=color_dict[c])
+                bottom += editing_spec[i][c]
+        spec.append(bottom) 
+
     ax.spines["top"].set_visible(False) 
     ax.spines["right"].set_visible(False)
     ax.set_xlim(-0.5,len(ref)-0.5)
-    if max(editing_spec) > 0.5:
+    if max(spec) > 0.5:
         ax.set_ylim(0,1.0) 
-    elif max(editing_spec) > 0.3: 
+    elif max(spec) > 0.3: 
         ax.set_ylim(0,0.5) 
     else: 
         ax.set_ylim(0,0.3) 
