@@ -151,20 +151,20 @@ A pdf file visualizing total frequencies of the three possible base transition p
 A base editor model needs to be prepared as a CSV file in the following format
 
 ````
-#Model Name : Target-ACEmax
-#TP : Target transition probability
-#CTP : Conditional transition probability
-Data type,Conditional base transition,Target base transition,Probability
+#Model Name : Target-ACE
+#TP         : Target base transition probability
+#CTP        : Conditional base transition probability
+Data type,Conditional transition,Target transition,Probability
 TP,,-30:A>A,0
-TP,,-30:A>T,0
-TP,,-30:A>G,1.0102950035855926e-05
+TP,,-30:A>T,1.74142232733626e-05
+TP,,-30:A>G,1.1143076691010203e-05
 TP,,-30:A>C,0
-TP,,-30:T>A,1.986441510704398e-05
+TP,,-30:T>A,0
 TP,,-30:T>T,0
-TP,,-30:T>G,0
-TP,,-30:T>C,3.1252658956434616e-05
-TP,,-30:G>A,0
-TP,,-30:G>T,0.000140296703177661
+TP,,-30:T>G,1.8732512352396277e-05
+TP,,-30:T>C,0.00013427188151391074
+TP,,-30:G>A,6.913704645176088e-05
+TP,,-30:G>T,9.668251416054742e-05
 ...
 CTP,-30:A>A,-30:A>A,1.0
 CTP,-30:A>A,-30:A>T,0
