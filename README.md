@@ -1,7 +1,7 @@
-# Base editing prediction model used in Sakata, Ishiguro, Mori et al. (2020)
+# Base editing prediction model used in Sakata, Ishiguro, Mori et al. __biorxiv__(2019)
 
 ## Installation and User Manual
-This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=20> be the nucleotide base transition status at *i* bp position relative to the PAM at the target site and <img src=images/P_si.png width=40>be the probability of  <img src=images/S_i.png width=20>. A base editor model is prepared as a profile of <img src=images/P_si.png width=40> and <img src=images/P_sjsi.png width=55> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
+This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=18> be the nucleotide base transition status at *i* bp position relative to the PAM at the target site and <img src=images/P_si.png width=40>be the probability of  <img src=images/S_i.png width=18>. A base editor model is prepared as a profile of <img src=images/P_si.png width=40> and <img src=images/P_sjsi.png width=55> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
 
 
 In this script, a predicted frequency of a given editing pattern for an input target sequence is calculated by the following formula:
@@ -13,8 +13,7 @@ In this script, a predicted frequency of a given editing pattern for an input ta
  
 
 where
-
- is a base editing pattern in a window spanning from *m* bp *n* bp relative to the PAM, which can be alternatively represented by a string of transition statuses,<img src=images/s_list.png width=140>,
+<img src=images/S_mn.png width=18> is a base editing pattern in a window spanning from *m* bp *n* bp relative to the PAM, which can be alternatively represented by a string of transition statuses,<img src=images/S_list.png width=140>,
 
 <img src=images/difinition.png width=250>,
 
@@ -34,12 +33,11 @@ Python 3.7.0 or later
 
 1. Donwload the software by
 
-   `git clone https://github.com/yachielab/base-editing-prediction`
+   ``git clone https://github.com/yachielab/base-editing-prediction``
 
 2. Install the necessary Python packages
 
-   ```pip install matplotlib```
-
+   ``pip install matplotlib``
    ``pip install numpy``
 
    
@@ -48,32 +46,27 @@ Python 3.7.0 or later
 
 ```
 SYNOPSIS
-		base-editing-prediction.py [-i] [-o] [-s] [-e] [-m] [-f]
-[-h] [--help]
+	base-editing-prediction.py [-i] [-o] [-s] [-e] [-m] [-f][-h] [--help]
 
 Options:
 -i <String>
-		Input target sequence
+	Input target sequence
 -o <String>
-		Editing outcome sequence
+	Editing outcome sequence
 -s <Integer>
-		Start position of the input target sequene relative to the PAM¥
+	Start position of the input target sequene relative to the PAM¥
 -e <Integer>
-		End position of the input target sequene relative to the PAM
+	End position of the input target sequene relative to the PAM
 -m <String>
-		File path of base editing model
+	File path of base editing model
 -f <String>
-		Output file path and name. Ex. [file_path]/[output]
+	Output file path and name. Ex. [file_path]/[output]
 -h, --help
-		Print the usage of this script
+	Print the usage of this script
 ```
 
-
-
 ## Usage
-
 ### Sample codes
-
 #### Example 1: Predicting a frequency of a given editing outcome pattern
 
 ````
@@ -160,7 +153,7 @@ A pdf file visualizing total frequencies of the three possible base transition p
 
 
 
-###File format for base editor model
+### File format for base editor model
 
 A base editor model needs to be prepared as a CSV file in the following format
 
@@ -204,7 +197,7 @@ CTP,-30:A\>G,-30:A\>A,0
 
 
 
-###Sample models 
+### Sample models 
 
 Cytosine base editors (CBEs):
 -  ``sample_models/TargetAID.csv``
@@ -212,26 +205,17 @@ Cytosine base editors (CBEs):
 -   ``sample_models/BE4max.csv``
 -   ``sample_models/BE4maxC.csv``
 
-
-
 Adenine base editors (ABEs):
-
 -   ``sample_models/ABE.csv``
 -   ``sample_models/ABEmax.csv``
 
-
-
 Base editor mixes:
-
 -   ``sample_models/TargetAID_plus_ABE.csv``
 -   ``sample_models/TargetAIDmax_plus_ABEmax.csv``
 -  ``sample_models/BE4max_plus_ABEmax.csv``
 -   ``sample\_models/BE4maxC\_plus\_ABEmax.csv``
 
-
-
 Dual function base editors
-
 -  ``sample\_models/TargetACE.csv``
 -  `` sample\_models/TargetACEmax.csv``
 -  ``sample\_models/ACBEmax.csv``
