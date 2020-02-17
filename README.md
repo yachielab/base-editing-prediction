@@ -1,7 +1,7 @@
-# Base editing prediction model used in Sakata, Ishiguro, Mori et al. __biorxiv__(2019)
+# Base editing prediction model used in Sakata, Ishiguro, Mori et al. *bioRxiv* (2019)
 
 ## Installation and User Manual
-This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=18> be the nucleotide base transition status at *i* bp position relative to the PAM at the target site and <img src=images/P_si.png width=40>be the probability of  <img src=images/S_i.png width=18>. A base editor model is prepared as a profile of <img src=images/P_si.png width=40> and <img src=images/P_sjsi.png width=55> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
+This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=14 height=14> be the nucleotide base transition status at *i* bp position relative to the PAM at the target site and <img src=images/P_si.png width=36 height=16>be the probability of  <img src=images/S_i.png width=14 height=14>. A base editor model is prepared as a profile of <img src=images/P_si.png width=36 height=16> and <img src=images/P_sjsi.png width=55 height=18> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
 
 
 In this script, a predicted frequency of a given editing pattern for an input target sequence is calculated by the following formula:
@@ -162,26 +162,26 @@ A base editor model needs to be prepared as a CSV file in the following format
 #TP : Target transition probability
 #CTP : Conditional transition probability
 Data type,Conditional base transition,Target base transition,Probability
-TP,,-30:A\>A,0
-TP,,-30:A\>T,0
-TP,,-30:A\>G,1.0102950035855926e-05
-TP,,-30:A\>C,0
-TP,,-30:T\>A,1.986441510704398e-05
-TP,,-30:T\>T,0
-TP,,-30:T\>G,0
-TP,,-30:T\>C,3.1252658956434616e-05
-TP,,-30:G\>A,0
-TP,,-30:G\>T,0.000140296703177661
+TP,,-30:A>A,0
+TP,,-30:A>T,0
+TP,,-30:A>G,1.0102950035855926e-05
+TP,,-30:A>C,0
+TP,,-30:T>A,1.986441510704398e-05
+TP,,-30:T>T,0
+TP,,-30:T>G,0
+TP,,-30:T>C,3.1252658956434616e-05
+TP,,-30:G>A,0
+TP,,-30:G>T,0.000140296703177661
 ...
-CTP,-30:A\>A,-30:A\>A,1.0
-CTP,-30:A\>A,-30:A\>T,0
-CTP,-30:A\>A,-30:A\>G,0
-CTP,-30:A\>A,-30:A\>C,0
-CTP,-30:A\>T,-30:A\>A,0
-CTP,-30:A\>T,-30:A\>T,1.0
-CTP,-30:A\>T,-30:A\>G,0
-CTP,-30:A\>T,-30:A\>C,0
-CTP,-30:A\>G,-30:A\>A,0
+CTP,-30:A>A,-30:A>A,1.0
+CTP,-30:A>A,-30:A>T,0
+CTP,-30:A>A,-30:A>G,0
+CTP,-30:A>A,-30:A>C,0
+CTP,-30:A>T,-30:A>A,0
+CTP,-30:A>T,-30:A>T,1.0
+CTP,-30:A>T,-30:A>G,0
+CTP,-30:A>T,-30:A>C,0
+CTP,-30:A>G,-30:A>A,0
 ...
 ````
 
@@ -212,10 +212,10 @@ Adenine base editors (ABEs):
 Base editor mixes:
 -   ``sample_models/TargetAID_plus_ABE.csv``
 -   ``sample_models/TargetAIDmax_plus_ABEmax.csv``
--  ``sample_models/BE4max_plus_ABEmax.csv``
--   ``sample\_models/BE4maxC\_plus\_ABEmax.csv``
+-   ``sample_models/BE4max_plus_ABEmax.csv``
+-   ``sample_models/BE4maxC_plus_ABEmax.csv``
 
 Dual function base editors
--  ``sample\_models/TargetACE.csv``
--  `` sample\_models/TargetACEmax.csv``
--  ``sample\_models/ACBEmax.csv``
+-  ``sample_models/TargetACE.csv``
+-  ``sample_models/TargetACEmax.csv``
+-  ``sample_models/ACBEmax.csv``
