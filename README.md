@@ -126,7 +126,7 @@ transition patterns in every position across the target sequence
 #Target sequence : ACACACACTCTGATCATACGAGGG
 #Start position  : -21
 #End poition     : 2
-Position to the PAM,Target nucleotide,A frequency,T frquency,G frquency,C frequency
+Position to the PAM,Target nucleotide,Frequency of A, Frequency of T, Frequency of G, Frequency of C
 -21,A,N.A,0,0,0
 -20,C,0.0017650751761785623,0.07406627909928758,0.0006266740443025214,N.A.
 -19,A,N.A,6.201996639981142e-05,0.0029083418558160917,3.7436383472460367e-06
