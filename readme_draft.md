@@ -12,7 +12,7 @@ In this script, a predicted frequency of a given editing pattern for an input ta
 
  
 
-where
+where  
 <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;S_{m,n}" title="S_{m,n}" /> is a base editing pattern in a window spanning from <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;m" title="m" /> bp to <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;n" title="n" /> bp relative to the PAM, which can be alternatively represented by a string of transition statuses, <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_{m},&space;s_{m&plus;1},...,s_{n-1},s_{n}" title="s_{m}, s_{m+1},...,s_{n-1},s_{n}" />
 
 <img src=images/difinition.png width=250>,
@@ -114,7 +114,7 @@ ATATGCGCTCTGATCATACGAGGG,0.008231783270293863
 ...
 ````
 
-2\. ``[output]``_spectrum.csv**
+2\. ``[output]``\_spectrum.csv
 
 A CSV file showing total frequencies of the three possible base transition patterns in every position across the target sequence
 
@@ -139,7 +139,7 @@ Position from the PAM,Target nucleotide,Frequency of A,Frequency of T,Frequency 
 ...
 ````
 
-3\.``[output]``_spectrum.pdf
+3\.``[output]``\_spectrum.pdf
 
 A pdf file visualizing total frequencies of the three possible base transition patterns in every position across the target sequence.
 
@@ -185,7 +185,7 @@ CTP,-30:A>T,-30:A>C,0
 **Probability:** Probability of the target base transition (TP) or probability of the target base transition given the conditional base transition (CTP)
 
 ### Sample models 
-Base editing models 13 xx different base editing methods used in Sakata, Ishiguro, Mori et al. (2020) are provided in ``sample_models/. All of the base editing models were created for a target sequence region from -30 bp to +10 bp to the PAM.
+Base editing models 13 xx different base editing methods used in Sakata, Ishiguro, Mori et al. (2020) are provided in ``sample_models/``. All of the base editing models were created for a target sequence region from -30 bp to +10 bp to the PAM.
 
 Cytosine base editors (CBEs):
 
@@ -194,7 +194,7 @@ Cytosine base editors (CBEs):
 - sample_models/TargetAIDmax.csv
 - sample_models/BE4max.csv
 - sample_models/BE4maxC.csv
-```
+````
 
 
 Adenine base editors (ABEs):
