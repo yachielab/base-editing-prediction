@@ -167,6 +167,7 @@ def simualtion_all(target, transition_prob_dict, conditional_transition_prob_dic
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(add_help=False)
+    p.add_argument('-h', "--help", action='store_true', default=False) 
     p.add_argument("-i","--input",          type=str,  default="ACACACACACACTCTGATCATACGA")
     p.add_argument("-o","--outcome",        type=str,  default="None")
     p.add_argument("-m","--training_model", type=str,  default="sample_models/TargetACEmax.csv")
@@ -174,7 +175,14 @@ if __name__ == "__main__":
     p.add_argument("-e","--end",            type=int,  default=None)
     p.add_argument("-f","--filepath",       type=str,  default="./output/None")
     args = p.parse_args() 
-    
+    if args.help:
+        print()
+        with open("help.txt") as f:
+            for line in f:
+                print(line.rstrip())
+        print()
+        exit() 
+
     #Load training model.
     tp_dict, ctp_dict, model = read_csv(args.training_model)
     
