@@ -13,7 +13,7 @@ In this script, a predicted frequency of a given editing pattern for an input ta
  
 
 where
-<img src=images/S_mn.png width=36 height=18> is a base editing pattern in a window spanning from *m* bp *n* bp relative to the PAM, which can be alternatively represented by a string of transition statuses,<img src=images/S_list.png width=140>,
+<img src=images/S_mn.png width=32 height=16> is a base editing pattern in a window spanning from *m* bp *n* bp relative to the PAM, which can be alternatively represented by a string of transition statuses,<img src=images/S_list.png width=140>,
 
 <img src=images/difinition.png width=250>,
 
