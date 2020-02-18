@@ -192,8 +192,8 @@ Base editing models for xx different base editing methods used in Sakata, Ishigu
 Cytosine base editors (CBEs):
 -  ``sample_models/TargetAID.csv``
 -  ``sample_models/TargetAIDmax.csv``
--  ``sample_models/BE4max.csv"
--  ``sample_models/BE4maxC.csv"
+-  ``sample_models/BE4max.csv``
+-  ``sample_models/BE4maxC.csv``
 
 Adenine base editors (ABEs):
 -   ``sample_models/ABE.csv``
