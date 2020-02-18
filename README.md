@@ -38,6 +38,7 @@ Python 3.7.0 or later
 2. Install the necessary Python packages
 
    ``pip install matplotlib``  
+   
    ``pip install numpy``
 
    
