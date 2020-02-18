@@ -1,0 +1,18 @@
+SYNOPSIS
+	base-editing-prediction.py [-i] [-o] [-s] [-e] [-m] [-f][-h] [--help]
+
+Options:
+-i <String>
+	Input target sequence
+-o <String>
+	Editing outcome sequence
+-s <Integer>
+	Start position of the input target sequene relative to the PAM促
+-e <Integer>
+	End position of the input target sequene relative to the PAM
+-m <String>
+	File path of base editing model
+-f <String>
+	Output file path and name. Ex. [file_path]/[output]
+-h, --help
+	Print the usage of this script
