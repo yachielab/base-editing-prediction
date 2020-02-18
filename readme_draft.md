@@ -8,7 +8,7 @@ In this script, a predicted frequency of a given editing pattern for an input ta
 
 
 
-<img src="https://latex.codecogs.com/gif.latex?\dpi{100}&space;\fn_phv&space;P(S_{m,n})=&space;\left&space;(&space;\prod_{i&space;\in&space;E}&space;\left&space;(&space;\overline&space;P(s_i)\prod_{j&space;\in&space;R}&space;\overline&space;P(s_j|s_i)&space;\right&space;)\right&space;)&space;^\frac{1}{\left&space;|&space;E&space;\right&space;|}" title="P(S_{m,n})= \left ( \prod_{i \in E} \left ( \overline P(s_i)\prod_{j \in R} \overline P(s_j|s_i) \right )\right ) ^\frac{1}{\left | E \right |}" />
+<img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\fn_phv&space;P(S_{m,n})=&space;\left&space;(&space;\prod_{i&space;\in&space;E}&space;\left&space;(&space;\overline&space;P(s_i)\prod_{j&space;\in&space;R}&space;\overline&space;P(s_j|s_i)&space;\right&space;)\right&space;)&space;^\frac{1}{\left&space;|&space;E&space;\right&space;|}" title="P(S_{m,n})= \left ( \prod_{i \in E} \left ( \overline P(s_i)\prod_{j \in R} \overline P(s_j|s_i) \right )\right ) ^\frac{1}{\left | E \right |}" />
 
 
 
