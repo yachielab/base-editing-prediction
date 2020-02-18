@@ -8,14 +8,17 @@ In this script, a predicted frequency of a given editing pattern for an input ta
 
 
 
-<img src=images/equation.png width=250>
+<img src="https://latex.codecogs.com/gif.latex?\dpi{100}&space;\fn_phv&space;P(S_{m,n})=&space;\left&space;(&space;\prod_{i&space;\in&space;E}&space;\left&space;(&space;\overline&space;P(s_i)\prod_{j&space;\in&space;R}&space;\overline&space;P(s_j|s_i)&space;\right&space;)\right&space;)&space;^\frac{1}{\left&space;|&space;E&space;\right&space;|}" title="P(S_{m,n})= \left ( \prod_{i \in E} \left ( \overline P(s_i)\prod_{j \in R} \overline P(s_j|s_i) \right )\right ) ^\frac{1}{\left | E \right |}" />
 
- 
+
 
 where  
 <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;S_{m,n}" title="S_{m,n}" /> is a base editing pattern in a window spanning from <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;m" title="m" /> bp to <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;n" title="n" /> bp relative to the PAM, which can be alternatively represented by a string of transition statuses, <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_{m},&space;s_{m&plus;1},...,s_{n-1},s_{n}" title="s_{m}, s_{m+1},...,s_{n-1},s_{n}" />
 
-<img src=images/difinition.png width=250>,
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;Z|m&space;\leq&space;x\leq&space;n&space;\right&space;\}," title="R:=\left \{ x\in Z|m \leq x\leq n \right \}," />
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;\&space;\rm&space;postions\&space;with\&space;base\&space;transitions&space;\right&space;\}," title="R:=\left \{ x\in \ \rm postions\ with\ base\ transitions \right \}," />
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;\fn_phv&space;\overline&space;P(s_i)&space;=&space;0\&space;\rm&space;unless\&space;defined,\&space;and" title="\overline P(s_i) = 0\ \rm unless\ defined,\ and" />
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;\fn_phv&space;\overline&space;P(s_j|s_i)&space;=&space;1\&space;\rm&space;unless\&space;defined." title="\overline P(s_j|s_i) = 1\ \rm unless\ defined." />
 
 This script also enables prediction of all possible base editing pattern frequencies for a given input target sequence and generates an expected editing spectrum with total base editing frequencies across different positions relative to the PAM.
 
@@ -90,7 +93,7 @@ python base-editing-prediction.py -i  ACACACACTCTGATCATACGAGGG -s '-21' -m sampl
 
 **Output :** Generates the following three files in \[file\_path\]
 
-1\. ``[output]``_allpatterns.csv
+1\. ``[output]``\_allpatterns.csv
 
 A CSV file showing all of the possible base editing patterns for a given target sequence and the frequency of their outcomes. The editing patterns are sorted by their frequencies.
 
@@ -116,7 +119,7 @@ ATATGCGCTCTGATCATACGAGGG,0.008231783270293863
 
 2\. ``[output]``\_spectrum.csv
 
-A CSV file showing total frequencies of the three possible base transition patterns in every position across the target sequence
+A CSV file showing total frequencies of the three possible base transition patterns in every position across the target sequence.
 
 ````
 #Model name      : Target-ACEmax
@@ -147,7 +150,7 @@ A pdf file visualizing total frequencies of the three possible base transition p
 
 ### File format for base editor model
 
-A base editor model needs to be prepared as a CSV file in the following format
+A base editor model needs to be prepared as a CSV file in the following format.
 
 ````
 #Model Name : Target-ACEmax
@@ -178,17 +181,16 @@ CTP,-30:A>T,-30:A>C,0
 
 **Data type:** TP (transition probability) or CTP (Conditional transition probability)
 
-**Conditional base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern]``. This should be left empty when the data type is TP, or ignored
+**Conditional base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern]``. This should be left empty when the data type is TP, or ignored.
 
-**Target base transition:** {Relative position from the PAM}:{nucleotide transition pattern}
+**Target base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern}``
 
-**Probability:** Probability of the target base transition (TP) or probability of the target base transition given the conditional base transition (CTP)
+**Probability:** Probability of the target base transition (TP) or probability of the target base transition given the conditional base transition (CTP).
 
 ### Sample models 
-Base editing models 13 xx different base editing methods used in Sakata, Ishiguro, Mori et al. (2020) are provided in ``sample_models/``. All of the base editing models were created for a target sequence region from -30 bp to +10 bp to the PAM.
+Base editing models 13 different base editing methods used in Sakata, Ishiguro, Mori et al. (2020) are provided in ``sample_models/``. All of the base editing models were created for a target sequence region from -30 bp to +10 bp to the PAM.
 
 Cytosine base editors (CBEs):
-
 ````
 - sample_models/TargetAID.csv
 - sample_models/TargetAIDmax.csv
@@ -198,14 +200,12 @@ Cytosine base editors (CBEs):
 
 
 Adenine base editors (ABEs):
-
 ````
 - sample_models/ABE.csv``
 - sample_models/ABEmax.csv``
 ````
 
 Base editor mixes:
-
 ````
 - sample_models/TargetAID_plus_ABE.csv
 - sample_models/TargetAIDmax_plus_ABEmax.csv
@@ -214,7 +214,6 @@ Base editor mixes:
 ````
 
 Dual function base editors
-
 ````
 - sample_models/TargetACE.csv``
 - sample_models/TargetACEmax.csv``
