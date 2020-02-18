@@ -1,21 +1,25 @@
-### Base editing prediction model used in Sakata, Ishiguro, Mori et al. (2020)
-# Installation and User Manual
+# Base editing prediction model 
+## Installation and User Manual
 
-This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained with amplicon sequencing data obtained for a specific base editing method. Let <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_i" title="s_i" /> be the nucleotide base transition status at <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;i" title="i" /> bp position relative to the PAM at the target site and <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;P(s_i)" title="P(s_i)" /> be the probability of <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_i" title="s_i" />. A base editor model is prepared as a profile of <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;P(s_i)" title="P(s_i)" /> and <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;P(s_j|s_i)" title="P(s_j|s_i)" />  that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in ``sample_training_codes/``).
+This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained with amplicon sequencing data obtained for a specific base editing method. Let <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_i" title="s_i" /> be the nucleotide base transition status at <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;i" title="i" /> bp position relative to the PAM at the target site and <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;P(s_i)" title="P(s_i)" /> be the probability of <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_i" title="s_i" />. A base editor model is prepared as a profile of <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;P(s_i)" title="P(s_i)" /> and <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;P(s_j|s_i)" title="P(s_j|s_i)" />  that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon sequence data can be found in ``sample_training_codes/``).
 
 
 In this script, a predicted frequency of a given editing pattern for an input target sequence is calculated by the following formula:
 
 
+<p align="center">
+	<img src="https://latex.codecogs.com/svg.latex?\dpi{120}&space;\fn_phv&space;P(S_{m,n})=&space;\left&space;(&space;\prod_{i&space;\in&space;E}&space;\left&space;(&space;\overline&space;P(s_i)\prod_{j&space;\in&space;R}&space;\overline&space;P(s_j|s_i)&space;\right&space;)\right&space;)&space;^\frac{1}{\left&space;|&space;E&space;\right&space;|}" title="P(S_{m,n})= \left ( \prod_{i \in E} \left ( \overline P(s_i)\prod_{j \in R} \overline P(s_j|s_i) \right )\right ) ^\frac{1}{\left | E \right |}" />
+</p>
 
-<img src=images/equation.png width=250>
 
- 
 
-where
-<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;S_{m,n}" title="S_{m,n}" /> is a base editing pattern in a window spanning from <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;m" title="m" /> bp to <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;n" title="n" /> bp relative to the PAM, which can be alternatively represented by a string of transition statuses, <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_{m},&space;s_{m&plus;1},...,s_{n-1},s_{n}" title="s_{m}, s_{m+1},...,s_{n-1},s_{n}" />
+where  
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;S_{m,n}" title="S_{m,n}" /> is a base editing pattern in a window spanning from <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;m" title="m" /> bp to <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;n" title="n" /> bp relative to the PAM, which can be alternatively represented by a string of transition statuses, <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_{m},&space;s_{m&plus;1},...,s_{n-1},s_{n}" title="s_{m}, s_{m+1},...,s_{n-1},s_{n}" />, 
 
-<img src=images/difinition.png width=250>,
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;Z|m&space;\leq&space;x\leq&space;n&space;\right&space;\}" title="R:=\left \{ x\in Z|m \leq x\leq n \right \}" />,<br>
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;\&space;\rm&space;positions\&space;with\&space;base\&space;transitions&space;\right&space;\}" title="R:=\left \{ x\in \ \rm positions\ with\ base\ transitions \right \}" />,<br>
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\overline&space;P(s_i)=0&space;\rm&space;\&space;unless\&space;defined" title="\overline P(s_i)=0 \rm \ unless\ defined" />, and <br>
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\overline&space;P(s_j|s_i)=1&space;\rm&space;\&space;unless\&space;defined" title="\overline P(s_j|s_i)=1 \rm \ unless\ defined" />.
 
 This script also enables prediction of all possible base editing pattern frequencies for a given input target sequence and generates an expected editing spectrum with total base editing frequencies across different positions relative to the PAM.
 
@@ -29,18 +33,11 @@ Python 3.7.0 or later
 
 ## Installation
 
-1. Download the software by
+1\. Download the software by </br> ``git clone https://github.com/yachielab/base-editing-prediction``
 
-   ``git clone https://github.com/yachielab/base-editing-prediction``
-
-2. Install the necessary Python packages
-
-   ``pip install matplotlib``  
-   
-   ``pip install numpy``
+2\. Install the necessary Python packages </br> ``pip install matplotlib`` <br> ``pip install numpy``
 
    
-
 ## SYNOPSIS
 
 ```
@@ -88,11 +85,11 @@ Editing frequency : 0.01109914561215845
 python base-editing-prediction.py -i  ACACACACTCTGATCATACGAGGG -s '-21' -m sample_models/TargetACEmax.csv -f [file_path]/[output]
 ````
 
-**Output :** Generates the following three files in \[file\_path\]
+**Output :** Generates the following three files in ``[file_path]``
 
-1\. ``[output]``_allpatterns.csv
+1\. ``[output]``\_allpatterns.csv
 
-A CSV file showing all of the possible base editing patterns for a given target sequence and the frequency of their outcomes. The editing patterns are sorted by their frequencies.
+A csv file showing all of the possible base editing patterns for a given target sequence and the frequency of their outcomes. The editing patterns are sorted by their frequencies.
 
 
 ````
@@ -114,9 +111,9 @@ ATATGCGCTCTGATCATACGAGGG,0.008231783270293863
 ...
 ````
 
-2\. ``[output]``_spectrum.csv**
+2\. ``[output]``\_spectrum.csv
 
-A CSV file showing total frequencies of the three possible base transition patterns in every position across the target sequence
+A csv file showing total frequencies of the three possible base transition patterns in every position across the target sequence.
 
 ````
 #Model name      : Target-ACEmax
@@ -139,7 +136,7 @@ Position from the PAM,Target nucleotide,Frequency of A,Frequency of T,Frequency 
 ...
 ````
 
-3\.``[output]``_spectrum.pdf
+3\.``[output]``\_spectrum.pdf
 
 A pdf file visualizing total frequencies of the three possible base transition patterns in every position across the target sequence.
 
@@ -147,7 +144,7 @@ A pdf file visualizing total frequencies of the three possible base transition p
 
 ### File format for base editor model
 
-A base editor model needs to be prepared as a CSV file in the following format
+A base editor model needs to be prepared as a csv file in the following format.
 
 ````
 #Model Name : Target-ACEmax
@@ -176,47 +173,43 @@ CTP,-30:A>T,-30:A>C,0
 ...
 ````
 
-**Data type:** TP (transition probability) or CTP (Conditional transition probability)
+**Data type:** ``TP`` (transition probability) or ``CTP`` (Conditional transition probability)
 
-**Conditional base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern]``. This should be left empty when the data type is TP, or ignored
+**Conditional base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern]``. This should be left empty when the data type is TP, or ignored.
 
-**Target base transition:** {Relative position from the PAM}:{nucleotide transition pattern}
+**Target base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern]``
 
-**Probability:** Probability of the target base transition (TP) or probability of the target base transition given the conditional base transition (CTP)
+**Probability:** Probability of the target base transition (TP) or probability of the target base transition given the conditional base transition (CTP).
 
 ### Sample models 
-Base editing models 13 xx different base editing methods used in Sakata, Ishiguro, Mori et al. (2020) are provided in ``sample_models/. All of the base editing models were created for a target sequence region from -30 bp to +10 bp to the PAM.
+Base editing models 13 different base editing methods used in Sakata, Ishiguro, Mori et al. (2020) are provided in ``sample_models/``. All of the base editing models were created for a target sequence region from -30 bp to +10 bp to the PAM.
 
 Cytosine base editors (CBEs):
-
 ````
-- sample_models/TargetAID.csv
-- sample_models/TargetAIDmax.csv
-- sample_models/BE4max.csv
-- sample_models/BE4maxC.csv
-```
+sample_models/TargetAID.csv
+sample_models/TargetAIDmax.csv
+sample_models/BE4max.csv
+sample_models/BE4maxC.csv
+````
 
 
 Adenine base editors (ABEs):
-
 ````
-- sample_models/ABE.csv``
-- sample_models/ABEmax.csv``
+sample_models/ABE.csv
+sample_models/ABEmax.csv
 ````
 
 Base editor mixes:
-
 ````
-- sample_models/TargetAID_plus_ABE.csv
-- sample_models/TargetAIDmax_plus_ABEmax.csv
-- sample_models/BE4max_plus_ABEmax.csv
-- sample_models/BE4maxC_plus_ABEmax.csv
+sample_models/TargetAID_plus_ABE.csv
+sample_models/TargetAIDmax_plus_ABEmax.csv
+sample_models/BE4max_plus_ABEmax.csv 
+sample_models/BE4maxC_plus_ABEmax.csv
 ````
 
 Dual function base editors
-
 ````
-- sample_models/TargetACE.csv``
-- sample_models/TargetACEmax.csv``
-- sample_models/ACBEmax.csv``
+sample_models/TargetACE.csv
+sample_models/TargetACEmax.csv
+sample_models/ACBEmax.csv
 ````
