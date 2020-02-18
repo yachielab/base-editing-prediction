@@ -86,7 +86,7 @@ Editing frequency : 0.01109914561215845
 #### Example 2: Predicting frequencies of all the possible base editing patterns for a given target sequence
 
 ````
-python base-editing-prediction.py -i ACACACACACACTCTGATCATACGA -s '-25' -m sample_models/TargetACEmax.csv -f [file_path]/[output]
+python base-editing-prediction.py -i  ACACACACTCTGATCATACGAGGG -s '-21' -m sample_models/TargetACEmax.csv -f [file_path]/[output]
 ````
 
 **Output :** Generates the following three files in \[file\_path\]
