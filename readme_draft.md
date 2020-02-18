@@ -18,8 +18,8 @@ where
 
 <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;Z|m&space;\leq&space;x\leq&space;n&space;\right&space;\}" title="R:=\left \{ x\in Z|m \leq x\leq n \right \}" />,<br>
 <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;\&space;\rm&space;positions\&space;with\&space;base\&space;transitions&space;\right&space;\}" title="R:=\left \{ x\in \ \rm positions\ with\ base\ transitions \right \}" />,<br>
-<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\overline&space;P(s_i)&space;=&space;0" title="\overline P(s_i) = 0" /> unless defined, and <br>
-<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\overline&space;P(s_j|s_i)=1" title="\overline P(s_j|s_i)=1" /> unless defined.
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\overline&space;P(s_i)=0&space;\rm&space;\&space;unless\&space;defined" title="\overline P(s_i)=0 \rm \ unless\ defined" />, and <br>
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;\overline&space;P(s_j|s_i)=1&space;\rm&space;\&space;unless\&space;defined" title="\overline P(s_j|s_i)=1 \rm \ unless\ defined" />.
 
 This script also enables prediction of all possible base editing pattern frequencies for a given input target sequence and generates an expected editing spectrum with total base editing frequencies across different positions relative to the PAM.
 
