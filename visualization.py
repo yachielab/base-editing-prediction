@@ -28,7 +28,7 @@ def main(ref,editing_spec,s,e,name):
     spec = [] 
     fig  = plt.figure(figsize=(4,2))
     
-    #Visualization for the editing spectrum 
+    ### Visualize editing spectrum 
     ax   = fig.add_axes([0.1,0.2,0.8,0.8])
     for i in range(len(ref)):
         bottom = 0
@@ -52,7 +52,7 @@ def main(ref,editing_spec,s,e,name):
     ax.set_ylabel("Substitution frequency")
     ax.set_title(name,fontsize=15) 
     
-    #Visualization for reference sequence
+    ### Visualize in put sequence
     ax  = fig.add_axes([0.1,0.13,0.8,0.07])
     for i in range(len(ref)):
         ax.bar([i], [1], bottom=0, width=1.0, lw=0.2, edgecolor="#BBBBBB", facecolor=color_dict[ref[i]])
@@ -65,7 +65,7 @@ def main(ref,editing_spec,s,e,name):
     ax.set_yticks([])
     ax.set_xticks([]) 
 
-    #Visualization for PAM and target sequence
+    ### Visualize the PAM and target sequence diagrams
     ax  = fig.add_axes([0.1,0.08,0.8,0.05])
     for i in range(len(ref)):
         if -20 <= i + s <= -1: 
@@ -94,7 +94,7 @@ def main(ref,editing_spec,s,e,name):
     ax.set_ylim(0,1.0) 
     ax.set_yticks([])
     
-    #Legends for PAM and target sequence
+    ### Visualize legends for the PAM and target sequence
     if e > -1:
         ax_pam    = fig.add_axes([-0.05,-0.2,0.03,0.06]) 
         ax_target = fig.add_axes([0.1,-0.2,0.03,0.06])
@@ -118,7 +118,7 @@ def main(ref,editing_spec,s,e,name):
         ax.patch.set_facecolor("#808080")
         ax.text(1.3,0.4,"Target",rotation=0,va="center",ha="left",fontsize=13) 
 
-    #Legends for nuclotides
+    ### Visualize legends for nucleotides
     ax_A = fig.add_axes([0.1 + 0.4,-0.2,0.03,0.06]) 
     ax_T = fig.add_axes([0.1 + 0.5,-0.2,0.03,0.06]) 
     ax_G = fig.add_axes([0.1 + 0.6,-0.2,0.03,0.06]) 

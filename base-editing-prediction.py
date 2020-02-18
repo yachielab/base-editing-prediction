@@ -1,3 +1,11 @@
+#########################################################################
+# Base editing prediction model for Sakata, Ishiguro, Mori et al (2020) #
+# GitHub URL      : XXXXXX                                              #
+# Developed by    : Hideto Mori                                         #
+# E-mail          : morityun@sfc.keio.ac.jp                             #
+# Last updated on : Feb 18, 2020                                        #
+#########################################################################
+
 import os 
 import re
 import sys
@@ -30,7 +38,7 @@ def read_csv(fname):
         m_pattern_dict = collections.defaultdict(lambda : collections.defaultdict(dict))
         for line in f:
             line = line.rstrip().split(",") 
-            #Read conditional transition probability
+            ### Read base transition probabilities
             if line[0] == "TP": 
                 line[2] = line[2].split(":")
                 pos  = int(line[2][0]) 
@@ -41,15 +49,15 @@ def read_csv(fname):
                 else:
                     m_rate_dict[(pos,nuc1)][nuc2] = None 
             
-            #Read conditional transition probability
+            ### Read conditional base transition probabilities
             elif line[0] == "CTP": 
-                #Conditional base transition
+                ### Get conditional base transition pattern
                 line[1] = line[1].split(":") 
                 pos1    = int(line[1][0])
                 nuc1    = line[1][1][0] 
                 nuc2    = line[1][1][-1] 
                 
-                #Target base transition 
+                ### Get target base transition pattern 
                 line[2] = line[2].split(":") 
                 pos2    = int(line[2][0]) 
                 nuc3    = line[2][1][0] 
@@ -62,22 +70,24 @@ def read_csv(fname):
                 pass 
     return m_rate_dict, m_pattern_dict, name
 
+
+
 def simulation(ref,query,transition_prob_dict,conditional_transition_prob_dict,start=-30,end=10,model=None):
     '''
-    Predicting a frequency of a given editing outcome pattern
+    Predicting a frequency of a given editing outcome
     '''
     pos    = 0 
     value  = 1.0
     values = [] 
     edited_positions = []
     
-    #Search editing position and save into 'edited_positions'.
+    ### Look for edited base positions
     for pos, (r,q) in enumerate(zip(ref,query)):
         if r != q:
             edited_positions.append(pos)  
     all_combinations = itertools.product(edited_positions,list(range(end-start+1)))
     
-    #Product of base transition probablity at each position.
+    ### Multiply base transition probabilities for edited base positions
     for pos in edited_positions:
         p = query[pos] 
         v = transition_prob_dict[(pos+start,ref[pos])][p]
@@ -86,7 +96,7 @@ def simulation(ref,query,transition_prob_dict,conditional_transition_prob_dict,s
         value = value * v                     
         values.append(v)
     
-    #Product of conditional base transition probablity at each position given a base transition at edited position.
+    ### Multiply conditional base transition probabilities given each edited base transition pattern
     for combi in all_combinations:
         r_combi = (combi[0]+start,combi[1]+start)
         ref_set = (ref[combi[0]],ref[combi[1]]) 
@@ -97,7 +107,7 @@ def simulation(ref,query,transition_prob_dict,conditional_transition_prob_dict,s
             v = 1
         value = value * v
     
-    #Calculation of geometric mean. 
+    ### Take geometric mean 
     value = value**(1.0/len(edited_positions)) 
     if np.isnan(value) or value > min(values):
         value = np.prod(values)
@@ -105,14 +115,14 @@ def simulation(ref,query,transition_prob_dict,conditional_transition_prob_dict,s
 
 def simualtion_all(target, transition_prob_dict, conditional_transition_prob_dict, start=-30, end=10, model=None, output=None):
     '''
-    Predicting frequencies of the all possible base editing patterns for a given target sequence .
+    Predicting frequencies of all possible base editing outcomes
     '''
     chars  = [] 
     values = [] 
     for i, char in enumerate(target):
         values.append(sum(list(transition_prob_dict[i + start,char].values())))
     
-    #Generation of all possible base edting pattern 
+    ### Generate all possible base editing patterns 
     for i, char in enumerate(target):
         if values[i] >= 2.0e-3:
             chars.append(("A","G","C","T")) 
@@ -120,7 +130,7 @@ def simualtion_all(target, transition_prob_dict, conditional_transition_prob_dic
         else:
             chars.append((char,))
             
-    #Predicting frequencies of all possible base edting pattern 
+    ### Predict frequencies of all possible base editing patterns 
     outcome_value_dict = {}
     for outcome in itertools.product(*chars): 
         outcome = "".join(outcome)
@@ -128,7 +138,7 @@ def simualtion_all(target, transition_prob_dict, conditional_transition_prob_dic
             value   = simulation(target,outcome,transition_prob_dict,conditional_transition_prob_dict,start,end) 
             outcome_value_dict[outcome] = value
 
-    #Save frequency of each editing outcome into output file
+    ### Save frequencies of all possible base editing patterns
     with open("{}_allpatterns.csv".format(output),"w") as o:
         o.write("#Model name      : {}\n".format(model))
         o.write("#Target sequence : {}\n".format(target))
@@ -136,7 +146,7 @@ def simualtion_all(target, transition_prob_dict, conditional_transition_prob_dic
         o.write("#End poition     : {}\n".format(end))
         o.write("Editing outcome,Editing frequency\n")
     
-        #Calculation of editing spectrum 
+        ### Calculate editing spectrum 
         editing_spec = collections.defaultdict(lambda : {"A":0, "T":0, "G":0, "C":0}) 
         items = list(outcome_value_dict.items()) 
         items.sort(key=lambda x:x[1]) 
@@ -147,7 +157,7 @@ def simualtion_all(target, transition_prob_dict, conditional_transition_prob_dic
                 if t != p:
                     editing_spec[i][p] += outcome_value_dict[outcome]         
      
-    #Save values of the editing spectrum into output file
+    ### Save editing spectrum
     with open("{}_spectrum.csv".format(output),"w") as o:
         print("#Model name      : {}".format(model), file=o)
         print("#Target sequence : {}".format(args.input), file=o) 
@@ -163,6 +173,8 @@ def simualtion_all(target, transition_prob_dict, conditional_transition_prob_dic
                 print(start + i, target[i], editing_spec[i]["A"], editing_spec[i]["T"], 0.0, editing_spec[i]["C"], sep = ",", file=o)
             else:
                 print(start + i, target[i], editing_spec[i]["A"], editing_spec[i]["T"], editing_spec[i]["G"], 0.0, sep = ",", file=o)
+
+    ### Visualize editing spectrum
     vis.main(target, editing_spec, start, end, model) 
 
 if __name__ == "__main__":
@@ -183,10 +195,10 @@ if __name__ == "__main__":
         print()
         exit() 
 
-    #Load training model.
+    ### Load training model
     tp_dict, ctp_dict, model = read_csv(args.training_model)
     
-    #Make output directory.
+    ### Generate output directory
     if args.outcome == "None":
         output_path = args.filepath
         if output_path[0:2] != "./" and output_path[0] != "/":
@@ -197,7 +209,7 @@ if __name__ == "__main__":
             os.mkdir(output_dir.split("/")[-1]) 
         os.chdir(output_dir) 
 
-    #Set the position of the input target sequence. 
+    ### Obtain sequence positions 
     target = args.input
     if args.start == None and args.end == None:
         raise ValueError("The argument '-s' or '-e' should be specified.") 
@@ -214,7 +226,7 @@ if __name__ == "__main__":
             start = args.start
             end   = args.end
          
-    #Execution
+    ### Execute
     if args.outcome == "None":
         simualtion_all(target, tp_dict, ctp_dict, start=start, end=end, model=model, output=output_file)
     else:
