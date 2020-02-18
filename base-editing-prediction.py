@@ -1,10 +1,10 @@
-#########################################################################
-# Base editing prediction model for Sakata, Ishiguro, Mori et al (2020) #
-# GitHub URL      : XXXXXX                                              #
-# Developed by    : Hideto Mori                                         #
-# E-mail          : morityun@sfc.keio.ac.jp                             #
-# Last updated on : Feb 18, 2020                                        #
-#########################################################################
+##########################################################################
+# Base editing prediction model for Sakata, Ishiguro, Mori et al (2020)  #
+# GitHub URL      : https://github.com/yachielab/base-editing-prediction #
+# Developed by    : Hideto Mori                                          #
+# E-mail          : morityun@sfc.keio.ac.jp                              #
+# Last updated on : Feb 18, 2020                                         #
+##########################################################################
 
 import os 
 import re
