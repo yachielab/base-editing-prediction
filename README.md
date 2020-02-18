@@ -1,7 +1,7 @@
 # Base editing prediction model used in Sakata, Ishiguro, Mori et al. (2020)  
 # Installation and User Manual
 
-This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=14 height=14> be the nucleotide base transition status at *i* bp position relative to the PAM at the target site and <img src=images/P_si.png width=36 height=16> be the probability of  <img src=images/S_i.png width=14 height=14>. A base editor model is prepared as a profile of <img src=images/P_si.png width=36 height=16> and <img src=images/P_sjsi.png width=55 height=18> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
+This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=14 height=14> be the nucleotide base transition status at <img src="https://latex.codecogs.com/svg.latex?\inline&space;i" title="i" /> bp position relative to the PAM at the target site and <img src="https://latex.codecogs.com/svg.latex?\inline&space;P(s_i)" title="P(s_i)" /> be the probability of <img src="https://latex.codecogs.com/svg.latex?\inline&space;s_i" title="s_i" />. A base editor model is prepared as a profile of <img src="https://latex.codecogs.com/svg.latex?\inline&space;P(s_i)" title="P(s_i)" /> and <img src=images/P_sjsi.png width=55 height=18> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
 
 
 In this script, a predicted frequency of a given editing pattern for an input target sequence is calculated by the following formula:
@@ -13,8 +13,7 @@ In this script, a predicted frequency of a given editing pattern for an input ta
  
 
 where
-<img src=images/S_mn.png width=32 height=16> is a base editing pattern in a window spanning from *m* bp *n* bp relative to the PAM, which can be alternatively represented by a string of transition statuses,<img src=images/S_list.png width=140>,
-
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;S_{m,n}" title="S_{m,n}" /> is a base editing pattern in a window spanning from <img src="https://latex.codecogs.com/svg.latex?\inline&space;m" title="m" /> bp <img src="https://latex.codecogs.com/svg.latex?\inline&space;n" title="n" /> bp relative to the PAM, which can be alternatively represented by a string of transition statuses, <img src="https://latex.codecogs.com/svg.latex?\inline&space;s_{m},&space;s_{m&plus;1},...,s_{n-1},s_{n}" title="s_{m}, s_{m+1},...,s_{n-1},s_{n}" />
 <img src=images/difinition.png width=250>,
 
 
