@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 def read_csv(fname):
     '''
-    Read input model
+    Load input model
     '''
     info = []
     with open(fname) as f:
@@ -153,16 +153,16 @@ def simualtion_all(target, transition_prob_dict, conditional_transition_prob_dic
         print("#Target sequence : {}".format(args.input), file=o) 
         print("#Start position  : {}".format(start), file=o)
         print("#End poition     : {}".format(end), file=o)
-        print("Position to the PAM","Target nucleotide", "A frequency","T frquency", "G frquency", "C frequency", sep=",", file=o)
+        print("Position to the PAM","Target nucleotide", "Frequency of A","Frquency of T", "Frquency of G", "Frequency of C", sep=",", file=o)
         for i in range(len(target)):
             if   target[i] == "A":
-                print(start + i, target[i], "N.A", editing_spec[i]["T"], editing_spec[i]["G"], editing_spec[i]["C"], sep = ",", file=o)
+                print(start + i, target[i], 0.0, editing_spec[i]["T"], editing_spec[i]["G"], editing_spec[i]["C"], sep = ",", file=o)
             elif target[i] == "T":
-                print(start + i, target[i], editing_spec[i]["A"], "N.A", editing_spec[i]["G"], editing_spec[i]["C"], sep = ",", file=o)
+                print(start + i, target[i], editing_spec[i]["A"], 0.0, editing_spec[i]["G"], editing_spec[i]["C"], sep = ",", file=o)
             elif target[i] == "G":
-                print(start + i, target[i], editing_spec[i]["A"], editing_spec[i]["T"], "N.A.", editing_spec[i]["C"], sep = ",", file=o)
+                print(start + i, target[i], editing_spec[i]["A"], editing_spec[i]["T"], 0.0, editing_spec[i]["C"], sep = ",", file=o)
             else:
-                print(start + i, target[i], editing_spec[i]["A"], editing_spec[i]["T"], editing_spec[i]["G"], "N.A.", sep = ",", file=o)
+                print(start + i, target[i], editing_spec[i]["A"], editing_spec[i]["T"], editing_spec[i]["G"], 0.0, sep = ",", file=o)
     vis.main(target, editing_spec, start, end, model) 
 
 if __name__ == "__main__":
