@@ -198,8 +198,8 @@ Cytosine base editors (CBEs):
 
 Adenine base editors (ABEs):
 ````
-- sample_models/ABE.csv``
-- sample_models/ABEmax.csv``
+- sample_models/ABE.csv
+- sample_models/ABEmax.csv
 ````
 
 Base editor mixes:
@@ -212,7 +212,7 @@ Base editor mixes:
 
 Dual function base editors
 ````
-- sample_models/TargetACE.csv``
-- sample_models/TargetACEmax.csv``
-- sample_models/ACBEmax.csv``
+- sample_models/TargetACE.csv
+- sample_models/TargetACEmax.csv
+- sample_models/ACBEmax.csv
 ````
