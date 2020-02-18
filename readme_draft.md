@@ -29,18 +29,11 @@ Python 3.7.0 or later
 
 ## Installation
 
-1. Download the software by
+1\. Download the software by </br> ``git clone https://github.com/yachielab/base-editing-prediction``
 
-   ``git clone https://github.com/yachielab/base-editing-prediction``
-
-2. Install the necessary Python packages
-
-   ``pip install matplotlib``  
-   
-   ``pip install numpy``
+2\. Install the necessary Python packages </br> ``pip install matplotlib`` <br> ``pip install numpy``
 
    
-
 ## SYNOPSIS
 
 ```
