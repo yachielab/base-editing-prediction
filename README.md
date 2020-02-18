@@ -1,7 +1,7 @@
-# Base editing prediction model used in Sakata, Ishiguro, Mori et al. *bioRxiv* (2019)
+# Base editing prediction model used in Sakata, Ishiguro, Mori et al. (2020)
 
 ## Installation and User Manual
-This is a Python script used in Sakata, Ishiguro, Mori et al (2019) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=14 height=14> be the nucleotide base transition status at *i* bp position relative to the PAM at the target site and <img src=images/P_si.png width=36 height=16> be the probability of  <img src=images/S_i.png width=14 height=14>. A base editor model is prepared as a profile of <img src=images/P_si.png width=36 height=16> and <img src=images/P_sjsi.png width=55 height=18> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
+This is a Python script used in Sakata, Ishiguro, Mori et al (2020) to predict frequencies of base editing patterns for a given input sequence using a model trained using amplicon sequencing data obtained for a specific base editing method. Let <img src=images/S_i.png width=14 height=14> be the nucleotide base transition status at *i* bp position relative to the PAM at the target site and <img src=images/P_si.png width=36 height=16> be the probability of  <img src=images/S_i.png width=14 height=14>. A base editor model is prepared as a profile of <img src=images/P_si.png width=36 height=16> and <img src=images/P_sjsi.png width=55 height=18> that can be prepared from amplicon sequence data of different target sites treated with the corresponding base editor (sample codes to generate a base editing model from amplicon data can be found in sample_training_codes/).
 
 
 In this script, a predicted frequency of a given editing pattern for an input target sequence is calculated by the following formula:
@@ -188,7 +188,7 @@ CTP,-30:A>T,-30:A>C,0
 **Probability:** Probability of the target base transition (TP) or probability of the target base transition given the conditional base transition (CTP)
 
 ### Sample models 
-Base editing models for xx different base editing methods used in Sakata, Ishiguro, Mori et al. (20xx) are provided in sample\_models/. All of the base editing models were created for a target sequence region from -30 bp to +10 bp to the PAM.
+Base editing models for xx different base editing methods used in Sakata, Ishiguro, Mori et al. (2020) are provided in sample\_models/. All of the base editing models were created for a target sequence region from -30 bp to +10 bp to the PAM.
 
 Cytosine base editors (CBEs):
 -  ``sample_models/TargetAID.csv``
