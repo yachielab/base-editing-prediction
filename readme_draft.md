@@ -85,11 +85,11 @@ Editing frequency : 0.01109914561215845
 python base-editing-prediction.py -i  ACACACACTCTGATCATACGAGGG -s '-21' -m sample_models/TargetACEmax.csv -f [file_path]/[output]
 ````
 
-**Output :** Generates the following three files in \[file\_path\]
+**Output :** Generates the following three files in ``[file_path]``
 
 1\. ``[output]``\_allpatterns.csv
 
-A CSV file showing all of the possible base editing patterns for a given target sequence and the frequency of their outcomes. The editing patterns are sorted by their frequencies.
+A csv file showing all of the possible base editing patterns for a given target sequence and the frequency of their outcomes. The editing patterns are sorted by their frequencies.
 
 
 ````
@@ -113,7 +113,7 @@ ATATGCGCTCTGATCATACGAGGG,0.008231783270293863
 
 2\. ``[output]``\_spectrum.csv
 
-A CSV file showing total frequencies of the three possible base transition patterns in every position across the target sequence.
+A csv file showing total frequencies of the three possible base transition patterns in every position across the target sequence.
 
 ````
 #Model name      : Target-ACEmax
@@ -144,7 +144,7 @@ A pdf file visualizing total frequencies of the three possible base transition p
 
 ### File format for base editor model
 
-A base editor model needs to be prepared as a CSV file in the following format.
+A base editor model needs to be prepared as a csv file in the following format.
 
 ````
 #Model Name : Target-ACEmax
@@ -173,11 +173,11 @@ CTP,-30:A>T,-30:A>C,0
 ...
 ````
 
-**Data type:** TP (transition probability) or CTP (Conditional transition probability)
+**Data type:** ``TP`` (transition probability) or ``CTP`` (Conditional transition probability)
 
 **Conditional base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern]``. This should be left empty when the data type is TP, or ignored.
 
-**Target base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern}``
+**Target base transition:** ``[Relative position from the PAM]``:``[nucleotide transition pattern]``
 
 **Probability:** Probability of the target base transition (TP) or probability of the target base transition given the conditional base transition (CTP).
 
@@ -186,30 +186,30 @@ Base editing models 13 different base editing methods used in Sakata, Ishiguro, 
 
 Cytosine base editors (CBEs):
 ````
-- sample_models/TargetAID.csv
-- sample_models/TargetAIDmax.csv
-- sample_models/BE4max.csv
-- sample_models/BE4maxC.csv
+sample_models/TargetAID.csv
+sample_models/TargetAIDmax.csv
+sample_models/BE4max.csv
+sample_models/BE4maxC.csv
 ````
 
 
 Adenine base editors (ABEs):
 ````
-- sample_models/ABE.csv
-- sample_models/ABEmax.csv
+sample_models/ABE.csv
+sample_models/ABEmax.csv
 ````
 
 Base editor mixes:
 ````
-- sample_models/TargetAID_plus_ABE.csv
-- sample_models/TargetAIDmax_plus_ABEmax.csv
-- sample_models/BE4max_plus_ABEmax.csv
-- sample_models/BE4maxC_plus_ABEmax.csv
+sample_models/TargetAID_plus_ABE.csv
+sample_models/TargetAIDmax_plus_ABEmax.csv
+sample_models/BE4max_plus_ABEmax.csv 
+sample_models/BE4maxC_plus_ABEmax.csv
 ````
 
 Dual function base editors
 ````
-- sample_models/TargetACE.csv
-- sample_models/TargetACEmax.csv
-- sample_models/ACBEmax.csv
+sample_models/TargetACE.csv
+sample_models/TargetACEmax.csv
+sample_models/ACBEmax.csv
 ````
