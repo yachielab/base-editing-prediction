@@ -10,7 +10,7 @@ In this script, a predicted frequency of a given editing pattern for an input ta
 	<img src="https://latex.codecogs.com/svg.latex?\dpi{120}&space;\fn_phv&space;P(S_{m,n})=&space;\left&space;(&space;\prod_{i&space;\in&space;E}&space;\left&space;(&space;\overline&space;P(s_i)\prod_{j&space;\in&space;R}&space;\overline&space;P(s_j|s_i)&space;\right&space;)\right&space;)&space;^\frac{1}{\left&space;|&space;E&space;\right&space;|}" title="P(S_{m,n})= \left ( \prod_{i \in E} \left ( \overline P(s_i)\prod_{j \in R} \overline P(s_j|s_i) \right )\right ) ^\frac{1}{\left | E \right |}" />
 </p>
 
-where
+where  
 <img src="images/S_m_n.svg" title="S_{m,n}"/> is a base editing pattern in a window spanning from <img src="images/m.svg" title="m"/> bp to <img src="images/n.svg" title="n"/> bp relative to the PAM, which can be alternatively represented by a string of transition statuses, <img src="images/s_m-s_n.svg" title="s_{m}, s_{m+1},...,s_{n-1},s_{n}"/>, 
 
 <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;Z|m&space;\leq&space;x\leq&space;n&space;\right&space;\}" title="R:=\left \{ x\in Z|m \leq x\leq n \right \}" />,<br>
