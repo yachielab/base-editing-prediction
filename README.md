@@ -11,7 +11,7 @@ In this script, a predicted frequency of a given editing pattern for an input ta
 </p>
 
 where  
-<img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;S_{m,n}" title="S_{m,n}" /> is a base editing pattern in a window spanning from <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;m" title="m" /> bp to <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;n" title="n" /> bp relative to the PAM, which can be alternatively represented by a string of transition statuses, <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_{m},&space;s_{m&plus;1},...,s_{n-1},s_{n}" title="s_{m}, s_{m+1},...,s_{n-1},s_{n}" />, 
+<img src="images/S_m_n.svg" /> is a base editing pattern in a window spanning from <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;m" title="m" /> bp to <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;n" title="n" /> bp relative to the PAM, which can be alternatively represented by a string of transition statuses, <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;s_{m},&space;s_{m&plus;1},...,s_{n-1},s_{n}" title="s_{m}, s_{m+1},...,s_{n-1},s_{n}" />, 
 
 <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;Z|m&space;\leq&space;x\leq&space;n&space;\right&space;\}" title="R:=\left \{ x\in Z|m \leq x\leq n \right \}" />,<br>
 <img src="https://latex.codecogs.com/svg.latex?\inline&space;\fn_phv&space;R:=\left&space;\{&space;x\in&space;\&space;\rm&space;positions\&space;with\&space;base\&space;transitions&space;\right&space;\}" title="R:=\left \{ x\in \ \rm positions\ with\ base\ transitions \right \}" />,<br>
